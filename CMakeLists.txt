@@ -1,17 +1,73 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+cmake_minimum_required(VERSION 2.8.3)
+project(p2os_driver)
 
-# Append to CPACK_SOURCE_IGNORE_FILES a semicolon-separated list of
-# directories (or patterns, but directories should suffice) that should
-# be excluded from the distro.  This is not the place to put things that
-# should be ignored everywhere, like "build" directories; that happens in
-# rosbuild/rosbuild.cmake.  Here should be listed packages that aren't
-# ready for inclusion in a distro.
-#
-# This list is combined with the list in rosbuild/rosbuild.cmake.  Note
-# that CMake 2.6 may be required to ensure that the two lists are combined
-# properly.  CMake 2.4 seems to have unpredictable scoping rules for such
-# variables.
-#list(APPEND CPACK_SOURCE_IGNORE_FILES /core/experimental)
+find_package(catkin REQUIRED COMPONENTS diagnostic_updater nav_msgs message_generation roscpp geometry_msgs tf std_msgs)
 
-rosbuild_make_distribution(1.0.1)
+#######################################
+## Declare ROS messages and services ##
+#######################################
+
+## Generate messages in the 'msg' folder
+add_message_files(
+  FILES
+  AIO.msg
+  BatteryState.msg
+  DIO.msg
+  GripperState.msg
+  GripState.msg
+  LiftState.msg
+  MotorState.msg
+  PTZState.msg
+  SonarArray.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  geometry_msgs
+  nav_msgs
+)
+
+#add_dependencies(p2os_driver nav_msgs_gencpp)
+###################################################
+## Declare things to be passed to other projects ##
+###################################################
+
+## LIBRARIES: libraries you create in this project that dependent projects also need
+## CATKIN_DEPENDS: catkin_packages dependent projects also need
+## DEPENDS: system dependencies of this project that dependent projects also need
+catkin_package(
+   INCLUDE_DIRS include
+#  LIBRARIES p2os_driver
+   CATKIN_DEPENDS message_runtime nav_msgs roscpp geometry_msgs diagnostic_updater tf std_msgs
+#  DEPENDS system_lib
+)
+
+###########
+## Build ##
+###########
+
+## Specify additional locations of header files
+include_directories(include
+  ${catkin_INCLUDE_DIRS}
+)
+
+## Declare a cpp executable
+add_executable(p2os_driver  src/p2osnode.cc 
+                            src/p2os.cc 
+                            src/kinecalc.cc 
+                            src/packet.cc 
+                            src/robot_params.cc 
+                            src/sip.cc 
+                            src/p2os_ptz.cpp)
+target_link_libraries(p2os_driver ${catkin_LIBRARIES})
+add_dependencies(p2os_driver nav_msgs_gencpp)
+
+#############
+## Install ##
+#############
+
+## Mark executables and/or libraries for installation
+install(TARGETS p2os_driver
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
