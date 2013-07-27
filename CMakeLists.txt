@@ -1,21 +1,17 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(p2os_urdf)
+cmake_minimum_required(VERSION 2.4.6)
+include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 
-find_package(catkin REQUIRED COMPONENTS message_generation geometry_msgs std_msgs robot_state_publisher urdf)
+# Append to CPACK_SOURCE_IGNORE_FILES a semicolon-separated list of
+# directories (or patterns, but directories should suffice) that should
+# be excluded from the distro.  This is not the place to put things that
+# should be ignored everywhere, like "build" directories; that happens in
+# rosbuild/rosbuild.cmake.  Here should be listed packages that aren't
+# ready for inclusion in a distro.
+#
+# This list is combined with the list in rosbuild/rosbuild.cmake.  Note
+# that CMake 2.6 may be required to ensure that the two lists are combined
+# properly.  CMake 2.4 seems to have unpredictable scoping rules for such
+# variables.
+#list(APPEND CPACK_SOURCE_IGNORE_FILES /core/experimental)
 
-catkin_package(
-    CATKIN_DEPENDS message_runtime robot_state_publisher urdf geometry_msgs sensor_msgs
-    LIBRARIES lib
-)
-
-add_executable(publisher src/publisher.cc)
-target_link_libraries(publisher ${catkin_LIBRARIES})
-
-install(TARGETS publisher
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-install(DIRECTORY 
-   launch
-   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
- )
+rosbuild_make_distribution(1.0.1)
