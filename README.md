@@ -1,3 +1,26 @@
+## p2os - 1.0.7-0
+
+User `allenh1@allenh1-Vostro-430` released the packages in the `p2os` repository by running `/usr/bin/bloom-release --rosdistro groovy --track groovy p2os --edit` on `Sat, 03 Aug 2013 14:52:46 -0000`
+
+These packages were released:
+- `p2os_driver`
+- `p2os_launch`
+- `p2os_teleop`
+- `p2os_urdf`
+
+Version of package(s) in repository `p2os`:
+- rosdistro version: `1.0.6-0`
+- old version: `1.0.6-0`
+- new version: `1.0.7-0`
+
+Versions of tools used:
+- bloom version: `0.4.4`
+- catkin_pkg version: `0.1.19`
+- rosdep version: `0.10.21`
+- rosdistro version: `0.2.13`
+- vcstools version: `0.1.31`
+
+
 ## p2os - 1.0.6-0
 
 User `allenh1@allenh1-Vostro-430` released the packages in the `p2os` repository by running `/usr/bin/bloom-release p2os --track groovy --rosdistro groovy` on `Sat, 27 Jul 2013 21:46:55 -0000`
