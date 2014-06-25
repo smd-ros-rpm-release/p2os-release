@@ -1,3 +1,28 @@
+## p2os (indigo) - 1.0.11-0
+
+The packages in the `p2os` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --ros-distro indigo --track indigo --new-track p2os` on `Wed, 25 Jun 2014 16:05:18 -0000`
+
+These packages were released:
+- `p2os_doc`
+- `p2os_driver`
+- `p2os_launch`
+- `p2os_msgs`
+- `p2os_teleop`
+- `p2os_urdf`
+
+Version of package(s) in repository `p2os`:
+- rosdistro version: `null`
+- old version: `1.0.10-0`
+- new version: `1.0.11-0`
+
+Versions of tools used:
+- bloom version: `0.5.10`
+- catkin_pkg version: `0.2.2`
+- rosdep version: `0.10.27`
+- rosdistro version: `0.3.5`
+- vcstools version: `0.1.35`
+
+
 ## p2os (indigo) - 1.0.10-0
 
 The packages in the `p2os` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --rosdistro indigo --track indigo p2os --new-track` on `Wed, 25 Jun 2014 15:20:39 -0000`
